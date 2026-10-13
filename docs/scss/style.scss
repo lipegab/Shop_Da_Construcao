@@ -5,17 +5,16 @@
 * License: https://creativecommons.org/licenses/by/3.0/
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 
 // Create SCSS variables
 $white: #ffffff;
 $black: #000000;
-$primary: #3b5d50;
-$secondary: #f9bf29;
+$primary: #141414;
+$secondary: #f77e01;
 $dark: #2f2f2f;
-$light: #dce5e4;
-$lighter: #eff2f1;
+$light: #fde8d2;
+$lighter: #f7f5f2;
 $body_color: #6a6a6a;
 $sm: 576px;
 $md: 768px;
@@ -33,9 +32,9 @@ body {
 body {
 	font-family: $font-family;
 	font-weight: 400;
-	line-height: 28px;
+	line-height: 1.7;
 	color: $body_color;
-	font-size: 14px;
+	font-size: 16px;
 	background-color: $lighter;
 }
 
@@ -68,7 +67,6 @@ a {
 		border-color: transparent;
 		&:active, &:focus {
 			box-shadow: none;
-			outline: none;
 		}
 	}
 	.custom-navbar-nav {
@@ -577,7 +575,6 @@ a {
 			margin: 2px;
 
 			&:active, &:focus, &:hover {
-				outline: none;
 				box-shadow: none;
 				background: none;
 			}
@@ -681,7 +678,6 @@ a {
 			border-radius: 10px;
 			font-family: $font-family;
 			&:active, &:focus {
-				outline: none;
 				box-shadow: none;
 				border-color: $primary;
 				box-shadow: 0 1px 4px 0 rgba($black, .2);
@@ -773,7 +769,6 @@ a {
 	border-radius: 10px;
 	font-family: $font-family;
 	&:active, &:focus {
-		outline: none;
 		box-shadow: none;
 		border-color: $primary;
 		box-shadow: 0 1px 4px 0 rgba($black, .2);
@@ -943,7 +938,7 @@ textarea {
 
 .history-eyebrow,
 .history-period {
-	color: #fe8330;
+	color: #a94d0b;
 	font-size: 12px;
 	font-weight: 700;
 	letter-spacing: .12em;
@@ -963,7 +958,7 @@ textarea {
 	position: relative;
 
 	&:before {
-		background: #dce5e4;
+		background: #fde8d2;
 		bottom: 1.5rem;
 		content: "";
 		left: 50%;
@@ -980,10 +975,10 @@ textarea {
 	width: 50%;
 
 	&:before {
-		background: #fe8330;
+		background: #f77e01;
 		border: 4px solid #ffffff;
 		border-radius: 50%;
-		box-shadow: 0 0 0 2px #fe8330;
+		box-shadow: 0 0 0 2px #f77e01;
 		content: "";
 		height: 16px;
 		position: absolute;
@@ -1005,7 +1000,7 @@ textarea {
 }
 
 .history-card {
-	background: #eff2f1;
+	background: #f7f5f2;
 	border-radius: 16px;
 	padding: 1.75rem;
 
@@ -1029,6 +1024,47 @@ textarea {
 		&-number {
 			font-size: 88px;
 		}
+	}
+}
+
+	.offer-image-placeholder {
+		align-items: center;
+		background: #fff1e5;
+		color: #a94d0b;
+		display: flex;
+		font-size: 48px;
+		height: 100%;
+		justify-content: center;
+	}
+
+	.tip-photo {
+		height: 160px;
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.tip-summary {
+		font-weight: 600;
+	}
+
+	.tip-body {
+		margin-top: .75rem;
+
+		p {
+			margin-bottom: .75rem;
+		}
+	}
+
+	.empty-state {
+		background: $white;
+		border-radius: 12px;
+		padding: 1.5rem;
+	}
+
+	.partner-logo img {
+		max-height: 72px;
+		max-width: 100%;
+		object-fit: contain;
 	}
 
 	.page-hero {
@@ -1088,7 +1124,7 @@ textarea {
 	}
 
 	.offer-badge {
-		background: rgba(#fe8330, .12);
+		background: rgba(#f77e01, .12);
 		border-radius: 20px;
 		color: #a94d0b;
 		display: inline-block;
@@ -1111,7 +1147,7 @@ textarea {
 		margin-bottom: 0;
 
 		i {
-			color: #fe8330;
+			color: #a94d0b;
 			margin-right: .35rem;
 		}
 	}
@@ -1120,7 +1156,7 @@ textarea {
 	.partner-disclaimer,
 	.tip-disclaimer {
 		background: #fff6ee;
-		border-left: 3px solid #fe8330;
+		border-left: 3px solid #f77e01;
 		border-radius: 4px;
 		font-size: 13px;
 		padding: 1rem 1.25rem;
@@ -1151,7 +1187,7 @@ textarea {
 		}
 
 		i {
-			color: #fe8330;
+			color: #a94d0b;
 			font-size: 24px;
 		}
 	}
@@ -1184,7 +1220,7 @@ textarea {
 	.tip-icon {
 		align-items: center;
 		background: #fff1e5;
-		color: #fe8330;
+		color: #a94d0b;
 		display: flex;
 		font-size: 40px;
 		height: 160px;
@@ -1244,7 +1280,7 @@ textarea {
 	.partner-logo {
 		align-items: center;
 		background: $lighter;
-		border: 1px dashed #aebdb9;
+		border: 1px dashed #d8d2ca;
 		border-radius: 12px;
 		color: $primary;
 		display: flex;
@@ -1257,7 +1293,7 @@ textarea {
 	}
 
 	.partner-contact-separator {
-		color: #aebdb9;
+		color: #d8d2ca;
 		padding: 0 .5rem;
 	}
 
@@ -1279,7 +1315,7 @@ textarea {
 			text-decoration: none;
 
 			&:hover {
-				color: #fe8330;
+				color: #a94d0b;
 			}
 		}
 	}
@@ -1301,6 +1337,7 @@ textarea {
 		}
 	}
 
+@media (max-width: 767.98px) {
 	.history-section {
 		padding: 5rem 0;
 	}
@@ -1322,3 +1359,67 @@ textarea {
 		}
 	}
 }
+
+
+/* ===== Identidade Shop da Construção (laranja + preto) ===== */
+:root { --brand: #f77e01; --ink: #141414; --paper: #f7f5f2; --brand-text: #a94d0b; }
+
+.skip-link { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: #fff; padding: .6rem 1rem; border-radius: 8px; z-index: 2000; }
+.skip-link:focus { top: 1rem; color: #fff; }
+a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px #fff; }
+
+.custom-navbar { background: #fff !important; border-bottom: 4px solid var(--brand); padding-top: 8px; padding-bottom: 8px; }
+.custom-navbar .navbar-brand { padding: 0; margin-right: 1.5rem; }
+.custom-navbar .navbar-brand img { display: block; height: 56px; width: auto; }
+.custom-navbar .navbar-toggler { border: 1px solid rgba(20, 20, 20, 0.35); }
+.custom-navbar .custom-navbar-nav li a { color: var(--ink) !important; opacity: 1; font-weight: 600; }
+.custom-navbar .custom-navbar-nav li a:hover { color: var(--brand-text) !important; }
+
+.hero { background: var(--brand); }
+.hero h1 { color: var(--ink); }
+.hero p:not(.hero-kicker) { color: rgba(20, 20, 20, 0.88); }
+.hero .hero-kicker { color: var(--ink) !important; }
+@media (min-width: 992px) { .hero .intro-excerpt { max-width: 580px; } }
+.hero .btn { background: var(--ink); border-color: var(--ink); color: #fff; }
+.hero .btn:hover { background: #000; border-color: #000; }
+.hero .btn.btn-white-outline { background: transparent; border-color: var(--ink); color: var(--ink); }
+.hero .btn.btn-white-outline:hover { background: var(--ink); color: #fff; }
+.hero-anniversary { border-color: var(--ink); color: var(--ink); }
+.hero-anniversary-caption { color: rgba(20, 20, 20, 0.85); }
+
+.btn.btn-brand { background: var(--brand); border-color: var(--brand); color: var(--ink); }
+.btn.btn-brand:hover { background: #e06f00; border-color: #e06f00; color: var(--ink); }
+.offer-cta { margin-top: 1rem; padding: .55rem 1.1rem; font-size: 14px; }
+
+.categories-section, .tips-teaser { padding: 6rem 0; }
+.category-card { background: #fff; border-top: 4px solid var(--brand); border-radius: 12px; display: flex; flex-direction: column; gap: .6rem; height: 100%; padding: 1.5rem; }
+.category-card i { color: var(--brand-text); font-size: 28px; }
+.category-card h3 { color: var(--ink); font-size: 18px; font-weight: 700; margin: 0; }
+.category-card p { margin: 0; }
+
+.cta-band { background: var(--ink); color: rgba(255, 255, 255, 0.85); padding: 4rem 0; }
+.cta-band h2 { color: #fff; font-size: 30px; font-weight: 700; margin-bottom: .5rem; }
+.cta-band p { margin: 0; }
+
+.visit-section { background: #fff; padding: 6rem 0; }
+.visit-list, .footer-contact { list-style: none; margin: 0; padding: 0; }
+.visit-list li, .footer-contact li { display: flex; gap: 1rem; margin-bottom: 1.25rem; }
+.footer-contact li { gap: .75rem; margin-bottom: .75rem; }
+.visit-list i, .footer-contact i { color: var(--brand-text); font-size: 20px; margin-top: .3rem; width: 22px; text-align: center; }
+.visit-list strong { color: var(--ink); display: block; }
+
+.site-footer .footer-logo img { display: block; height: 72px; width: auto; }
+.site-footer .footer-title { color: var(--ink); font-size: 16px; font-weight: 700; margin-bottom: 1rem; }
+.site-footer .footer-nav a, .footer-contact a { color: var(--ink); }
+
+.whatsapp-float { position: fixed; right: 1rem; bottom: 1rem; z-index: 1500; display: inline-flex; align-items: center; gap: .5rem; background: #0b7a3e; color: #fff; padding: .75rem 1.15rem; border-radius: 999px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); }
+.whatsapp-float:hover { background: #096333; color: #fff; }
+.whatsapp-float i { font-size: 22px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+.hero h1 { text-wrap: balance; }
+.custom-navbar .navbar-brand img { height: 60px; }
+
+.hero-badge { display: block; width: 100%; max-width: 220px; height: auto; margin: 0 auto; }
+@media (max-width: 767.98px) { .hero-badge { max-width: 180px; margin-top: 1.25rem; } }

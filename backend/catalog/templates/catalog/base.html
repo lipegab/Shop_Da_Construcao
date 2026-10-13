@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{% block description %}Shop da Construção: há 20 anos construindo histórias junto com você.{% endblock %}">
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:title" content="{% block social_title %}Shop da Construção Redecon | Aqui tem de tudo, de tudo tem!{% endblock %}">
+	<meta property="og:description" content="{% block social_description %}Shop da Construção: há 20 anos construindo histórias junto com você.{% endblock %}">
+	<link rel="icon" href="{% static 'favicon.png' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}?v=3" rel="stylesheet">
+	{% block extra_css %}{% endblock %}
+	<title>{% block title %}Shop da Construção{% endblock %}</title>
+</head>
+<body>
+	<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+	<nav class="custom-navbar navbar navbar-expand-md navbar-light" aria-label="Navegação principal">
+		<div class="container">
+			<a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo-shop-da-construcao.png' %}" alt="Shop da Construção Redecon" width="274" height="170"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Abrir menu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="main-navigation">
+				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+					<li class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}"><a class="nav-link" href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Início</a></li>
+					<li class="{% if request.resolver_match.url_name == 'offers' %}active{% endif %}"><a class="nav-link" href="{% url 'offers' %}" {% if request.resolver_match.url_name == 'offers' %}aria-current="page"{% endif %}>Ofertas</a></li>
+					<li class="{% if request.resolver_match.url_name == 'tips' %}active{% endif %}"><a class="nav-link" href="{% url 'tips' %}" {% if request.resolver_match.url_name == 'tips' %}aria-current="page"{% endif %}>Dicas</a></li>
+					<li class="{% if request.resolver_match.url_name == 'partners' %}active{% endif %}"><a class="nav-link" href="{% url 'partners' %}" {% if request.resolver_match.url_name == 'partners' %}aria-current="page"{% endif %}>Marcas parceiras</a></li>
+					<li class="{% if request.resolver_match.url_name == 'careers' %}active{% endif %}"><a class="nav-link" href="{% url 'careers' %}" {% if request.resolver_match.url_name == 'careers' %}aria-current="page"{% endif %}>Trabalhe conosco</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<main id="conteudo">
+		{% block content %}{% endblock %}
+	</main>
+
+	<footer class="footer-section site-footer">
+		<div class="container">
+			<div class="row g-4">
+				<div class="col-lg-5">
+					<a class="footer-logo" href="{% url 'home' %}"><img src="{% static 'images/logo-shop-da-construcao.png' %}" alt="Shop da Construção Redecon" width="274" height="170"></a>
+					<p class="mb-0">Há 20 anos, fazemos parte dos projetos de quem constrói e transforma. Obrigado por fazer parte dessa história.</p>
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<h2 class="footer-title">Navegue</h2>
+					<nav aria-label="Links do rodapé"><ul class="footer-nav list-unstyled mb-0">
+						<li><a href="{% url 'offers' %}">Ofertas</a></li>
+						<li><a href="{% url 'tips' %}">Dicas</a></li>
+						<li><a href="{% url 'partners' %}">Marcas parceiras</a></li>
+						<li><a href="{% url 'careers' %}">Trabalhe conosco</a></li>
+					</ul></nav>
+				</div>
+				<div class="col-sm-6 col-lg-4">
+					<h2 class="footer-title">Fale com a gente</h2>
+					<ul class="footer-contact">
+						<li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="contact-placeholder" data-contact="whatsappExibicao">84.99931-0422</span></li>
+						<li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span class="contact-placeholder" data-contact="endereco"> Avenida Teotônio Freire, n° 588 - Bairro JK | Currais Novos</span></li>
+						<li><i class="fa-solid fa-clock" aria-hidden="true"></i><span class="contact-placeholder" data-contact="horario">7:00 às 17:30</span></li>
+						<li><i class="fa-brands fa-instagram" aria-hidden="true"></i><span class="contact-placeholder" data-contact="instagram">@shopdaconstrucao</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="border-top copyright mt-4 pt-3">
+				<p class="mb-0">&copy; <span data-year>{% now "Y" %}</span> Shop da Construção.</p>
+			</div>
+		</div>
+	</footer>
+	<a class="whatsapp-float" data-link="whatsapp" data-msg="Olá! Vim pelo site da Shop da Construção." hidden><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'js/config.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

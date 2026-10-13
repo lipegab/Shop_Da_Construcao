@@ -1,0 +1,25 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Marcas parceiras | Shop da Construção{% endblock %}
+{% block description %}Conheça as marcas parceiras da Shop da Construção.{% endblock %}
+
+{% block content %}
+<section class="hero page-hero"><div class="container"><div class="row"><div class="col-lg-8 intro-excerpt">
+	<p class="hero-kicker">Quem constrói junto</p><h1>Marcas parceiras</h1>
+	<p>Conheça o espaço dedicado aos fabricantes e às marcas que ajudam a levar mais opções para os projetos dos nossos clientes.</p>
+</div></div></div></section>
+<section class="partners-section before-footer-section" aria-labelledby="partners-title"><div class="container">
+	<div class="row mb-4"><div class="col-lg-8"><p class="history-eyebrow">Parcerias</p><h2 class="section-title" id="partners-title">Marcas que constroem com a gente</h2><p>Conheça os fabricantes parceiros da loja.</p></div></div>
+	<div class="row">
+		{% for partner in partners %}
+		<div class="col-6 col-lg-3 mb-4"><article class="partner-card">
+			{% if partner.website %}<a href="{{ partner.website }}" target="_blank" rel="noopener noreferrer" class="partner-logo">{% else %}<div class="partner-logo">{% endif %}
+				{% if partner.logo %}<img src="{{ partner.logo.url }}" alt="{{ partner.name }}" loading="lazy">{% else %}{{ partner.name }}{% endif %}
+			{% if partner.website %}</a>{% else %}</div>{% endif %}
+			<p>{{ partner.category }}</p>
+		</article></div>
+		{% empty %}<div class="col-12"><p class="empty-state">Em breve, apresentaremos aqui as marcas parceiras da loja.</p></div>{% endfor %}
+	</div>
+	<div class="partner-contact"><h3>Quer ser nosso parceiro?</h3><p>Para conversar sobre parcerias com fabricantes, entre em contato pelos canais comerciais da loja:</p><p class="mb-0"><strong>E-mail:</strong> <span class="contact-placeholder" data-contact="emailComercial">[inserir e-mail comercial]</span> <span class="partner-contact-separator">|</span> <strong>WhatsApp:</strong> <span class="contact-placeholder" data-contact="whatsappExibicao">[inserir WhatsApp da loja]</span></p></div>
+</div></section>
+{% endblock %}

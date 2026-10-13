@@ -1,73 +1,29 @@
-(function() {
-	'use strict';
+(function () {
+  'use strict';
+  var c = window.SHOP_CONFIG || {};
 
-	var tinyslider = function() {
-		var el = document.querySelectorAll('.testimonial-slider');
+  // Textos preenchidos a partir de js/config.js
+  document.querySelectorAll('[data-contact]').forEach(function (el) {
+    var v = c[el.getAttribute('data-contact')];
+    if (!v) return;
+    el.textContent = el.getAttribute('data-contact') === 'instagram' ? '@' + v : v;
+    el.classList.remove('contact-placeholder');
+  });
 
-		if (el.length > 0) {
-			var slider = tns({
-				container: '.testimonial-slider',
-				items: 1,
-				axis: "horizontal",
-				controlsContainer: "#testimonial-nav",
-				swipeAngle: false,
-				speed: 700,
-				nav: true,
-				controls: true,
-				autoplay: true,
-				autoplayHoverPause: true,
-				autoplayTimeout: 3500,
-				autoplayButtonOutput: false
-			});
-		}
-	};
-	tinyslider();
+  // Botões/links de WhatsApp: só aparecem quando o número está configurado
+  var digits = String(c.whatsapp || '').replace(/\D/g, '');
+  if (digits) {
+    document.querySelectorAll('[data-link="whatsapp"]').forEach(function (el) {
+      var msg = el.getAttribute('data-msg');
+      el.href = 'https://wa.me/' + digits + (msg ? '?text=' + encodeURIComponent(msg) : '');
+      el.target = '_blank';
+      el.rel = 'noopener';
+      el.hidden = false;
+    });
+  }
 
-	
-
-
-	var sitePlusMinus = function() {
-
-		var value,
-    		quantity = document.getElementsByClassName('quantity-container');
-
-		function createBindings(quantityContainer) {
-	      var quantityAmount = quantityContainer.getElementsByClassName('quantity-amount')[0];
-	      var increase = quantityContainer.getElementsByClassName('increase')[0];
-	      var decrease = quantityContainer.getElementsByClassName('decrease')[0];
-	      increase.addEventListener('click', function (e) { increaseValue(e, quantityAmount); });
-	      decrease.addEventListener('click', function (e) { decreaseValue(e, quantityAmount); });
-	    }
-
-	    function init() {
-	        for (var i = 0; i < quantity.length; i++ ) {
-						createBindings(quantity[i]);
-	        }
-	    };
-
-	    function increaseValue(event, quantityAmount) {
-	        value = parseInt(quantityAmount.value, 10);
-
-	        console.log(quantityAmount, quantityAmount.value);
-
-	        value = isNaN(value) ? 0 : value;
-	        value++;
-	        quantityAmount.value = value;
-	    }
-
-	    function decreaseValue(event, quantityAmount) {
-	        value = parseInt(quantityAmount.value, 10);
-
-	        value = isNaN(value) ? 0 : value;
-	        if (value > 0) value--;
-
-	        quantityAmount.value = value;
-	    }
-	    
-	    init();
-		
-	};
-	sitePlusMinus();
-
-
-})()
+  // Ano do rodapé
+  document.querySelectorAll('[data-year]').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+})();

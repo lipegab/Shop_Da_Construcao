@@ -1,0 +1,94 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+
+{% block title %}Início | Shop da Construção{% endblock %}
+
+{% block content %}
+<section class="hero">
+	<div class="container">
+		<div class="row align-items-center justify-content-between">
+			<div class="col-lg-7">
+				<div class="intro-excerpt">
+					<p class="hero-kicker">Uma história de 20 anos</p>
+					<h1>Aqui tem de tudo, de tudo tem!</h1>
+					<p class="mb-4">Há 20 anos, a Shop da Construção faz parte dos projetos de quem constrói e transforma. Veja as ofertas do mês e conheça um pouco da nossa trajetória.</p>
+					<p><a href="{% url 'offers' %}" class="btn me-2">Ver ofertas</a><a href="#historia" class="btn btn-white-outline">Nossa história</a></p>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<img class="hero-badge" src="{% static 'images/selo-20-anos.png' %}" alt="Selo comemorativo de 20 anos da Shop da Construção" width="900" height="900">
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="history-section" id="historia" aria-labelledby="history-title">
+	<div class="container">
+		<div class="row mb-5">
+			<div class="col-lg-7 mx-auto text-center">
+				<p class="history-eyebrow">Nossa trajetória</p>
+				<h2 class="section-title" id="history-title">20 anos construindo essa história</h2>
+				<p class="history-intro">Uma caminhada feita de projetos, encontros e novos capítulos. E ela continua com você.</p>
+			</div>
+		</div>
+		<ol class="history-timeline">
+			<li class="history-timeline-item"><div class="history-card"><span class="history-period">O primeiro passo</span><h3>Onde tudo começa</h3><p>Uma ideia ganha forma e começa a trajetória da Shop da Construção, com espaço para muitos projetos pela frente.</p></div></li>
+			<li class="history-timeline-item"><div class="history-card"><span class="history-period">Nossa caminhada</span><h3>Cada projeto faz parte</h3><p>Ao longo do caminho, clientes e profissionais passam a fazer parte dessa história, levando novas ideias e desafios para construir juntos.</p></div></li>
+			<li class="history-timeline-item"><div class="history-card"><span class="history-period">Um marco especial</span><h3>20 anos de história</h3><p>Celebramos duas décadas de trajetória e agradecemos a todos que fizeram e fazem parte dessa construção.</p></div></li>
+			<li class="history-timeline-item"><div class="history-card"><span class="history-period">Daqui para frente</span><h3>Os próximos capítulos</h3><p>A história continua: novos projetos, novas possibilidades e a vontade de seguir construindo junto com você.</p></div></li>
+		</ol>
+	</div>
+</section>
+
+<section class="offers-section" aria-labelledby="home-offers-title">
+	<div class="container">
+		<div class="row mb-4"><div class="col-lg-8"><p class="history-eyebrow">Ofertas</p><h2 class="section-title" id="home-offers-title">Ofertas válidas</h2><p>Confira os destaques cadastrados pela equipe da loja.</p></div></div>
+		<div class="row">
+			{% for offer in offers %}
+			<div class="col-12 col-md-6 col-lg-4 mb-4"><article class="offer-card">
+				<div class="offer-image">
+					{% if offer.image %}<img src="{{ offer.image.url }}" alt="{{ offer.name }}">
+					{% else %}<div class="offer-image-placeholder" aria-hidden="true"><i class="fa-solid fa-box-open"></i></div>{% endif %}
+				</div>
+				<div class="offer-content"><span class="offer-badge">Oferta</span><h3>{{ offer.name }}</h3><p class="offer-price">R$ {{ offer.price|floatformat:2 }}</p><p class="offer-period">Válida de {{ offer.valid_from|date:"d/m/Y" }} a {{ offer.valid_until|date:"d/m/Y" }}</p><a class="btn btn-brand offer-cta" data-link="whatsapp" data-msg="Olá! Tenho interesse na oferta: {{ offer.name }}" hidden><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Perguntar no WhatsApp</a></div>
+			</article></div>
+			{% empty %}<div class="col-12"><p class="empty-state">Nenhuma oferta ativa no momento. Volte em breve para conferir as novidades.</p></div>{% endfor %}
+		</div>
+		<p><a class="more" href="{% url 'offers' %}">Ver todas as ofertas</a></p>
+	</div>
+</section>
+
+<section class="tips-teaser" aria-labelledby="home-tips-title">
+	<div class="container">
+		<div class="row mb-4">
+			<div class="col-md-8"><h2 class="section-title" id="home-tips-title">Dicas para a sua obra</h2></div>
+		</div>
+		<div class="row">
+			{% for tip in tips %}
+			<div class="col-12 col-md-6 col-lg-4 mb-4"><article class="tip-card">
+				{% if tip.image %}<img class="tip-photo" src="{{ tip.image.url }}" alt="{{ tip.title }}">{% else %}<div class="tip-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></div>{% endif %}
+				<div class="tip-content"><span class="tip-category">{{ tip.category }}</span><h3>{{ tip.title }}</h3><p>{{ tip.summary|default:tip.content|truncatewords:24 }}</p></div>
+			</article></div>
+			{% empty %}<div class="col-12"><p class="empty-state">As dicas da loja serão publicadas em breve.</p></div>{% endfor %}
+		</div>
+		<p><a class="more" href="{% url 'tips' %}">Ver todas as dicas</a></p>
+	</div>
+</section>
+
+<section class="partners-section" aria-labelledby="home-partners-title">
+	<div class="container">
+		<div class="row mb-4"><div class="col-lg-8"><p class="history-eyebrow">Parcerias</p><h2 class="section-title" id="home-partners-title">Marcas parceiras</h2></div></div>
+		<div class="row">
+			{% for partner in partners %}
+			<div class="col-6 col-lg-3 mb-4"><article class="partner-card">
+				{% if partner.website %}<a href="{{ partner.website }}" target="_blank" rel="noopener noreferrer" class="partner-logo">{% else %}<div class="partner-logo">{% endif %}
+					{% if partner.logo %}<img src="{{ partner.logo.url }}" alt="{{ partner.name }}">{% else %}{{ partner.name }}{% endif %}
+				{% if partner.website %}</a>{% else %}</div>{% endif %}
+				<p>{{ partner.category }}</p>
+			</article></div>
+			{% empty %}<div class="col-12"><p class="empty-state">Em breve, apresentaremos aqui as marcas parceiras da loja.</p></div>{% endfor %}
+		</div>
+		<p><a class="more" href="{% url 'partners' %}">Conheça as marcas parceiras</a></p>
+	</div>
+</section>
+{% endblock %}

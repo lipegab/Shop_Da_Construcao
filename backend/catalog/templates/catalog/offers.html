@@ -1,0 +1,31 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Ofertas | Shop da Construção{% endblock %}
+{% block description %}Confira as ofertas válidas da Shop da Construção.{% endblock %}
+
+{% block content %}
+<section class="hero page-hero"><div class="container"><div class="row"><div class="col-lg-8 intro-excerpt">
+	<p class="hero-kicker">Ofertas do mês</p><h1>Boas escolhas para o seu próximo projeto</h1>
+	<p>Confira as ofertas cadastradas pela equipe da loja. Consulte a loja para confirmar preços, estoque e condições vigentes.</p>
+</div></div></div></section>
+<section class="offers-section before-footer-section" aria-labelledby="offers-title"><div class="container">
+	<div class="row mb-4"><div class="col-lg-8"><p class="history-eyebrow">Ofertas válidas</p><h2 class="section-title" id="offers-title">Destaques do mês</h2><p>Consulte a loja para confirmar disponibilidade e condições antes da compra.</p></div></div>
+	<div class="row">
+		{% for offer in offers %}
+		<div class="col-12 col-md-6 col-lg-4 mb-4"><article class="offer-card">
+			<div class="offer-image">
+				{% if offer.image %}<img src="{{ offer.image.url }}" alt="{{ offer.name }}" loading="lazy">
+				{% else %}<div class="offer-image-placeholder" aria-hidden="true"><i class="fa-solid fa-box-open"></i></div>{% endif %}
+			</div>
+			<div class="offer-content"><span class="offer-badge">Oferta</span><h3>{{ offer.name }}</h3>
+				{% if offer.description %}<p>{{ offer.description }}</p>{% endif %}
+				<p class="offer-price">R$ {{ offer.price|floatformat:2 }}</p>
+				<p class="offer-period"><i class="fa-regular fa-calendar" aria-hidden="true"></i> Válida de {{ offer.valid_from|date:"d/m/Y" }} a {{ offer.valid_until|date:"d/m/Y" }}</p>
+				<a class="btn btn-brand offer-cta" data-link="whatsapp" data-msg="Olá! Tenho interesse na oferta: {{ offer.name }}" hidden><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Perguntar no WhatsApp</a>
+			</div>
+		</article></div>
+		{% empty %}<div class="col-12"><p class="empty-state">Nenhuma oferta ativa no momento. Volte em breve para conferir as novidades.</p></div>{% endfor %}
+	</div>
+	<p class="offer-disclaimer">Preços, estoque e condições podem mudar. Confirme os detalhes com a loja antes de concluir a compra.</p>
+</div></section>
+{% endblock %}

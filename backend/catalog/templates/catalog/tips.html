@@ -1,0 +1,28 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Dicas de produtos | Shop da Construção{% endblock %}
+{% block description %}Recomendações de produtos e orientações para seus projetos de construção e reforma.{% endblock %}
+
+{% block content %}
+<section class="hero page-hero"><div class="container"><div class="row"><div class="col-lg-8 intro-excerpt">
+	<p class="hero-kicker">Ideias para sua obra</p><h1>Dicas de produtos para cada projeto</h1>
+	<p>Orientações práticas para ajudar você a escolher materiais e planejar melhor cada etapa da construção ou reforma.</p>
+</div></div></div></section>
+<section class="tips-section before-footer-section" aria-labelledby="tips-title"><div class="container">
+	<div class="row mb-4"><div class="col-lg-8"><p class="history-eyebrow">Conteúdo da loja</p><h2 class="section-title" id="tips-title">Recomendações para sua obra</h2>
+		<p>Confira as dicas e converse com a equipe para escolher os produtos adequados ao seu projeto.</p>
+	</div></div>
+	<div class="row">
+		{% for tip in tips %}
+		<div class="col-12 col-md-6 col-lg-4 mb-4"><article class="tip-card">
+			{% if tip.image %}<img class="tip-photo" src="{{ tip.image.url }}" alt="{{ tip.title }}" loading="lazy">{% else %}<div class="tip-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></div>{% endif %}
+			<div class="tip-content"><span class="tip-category">{{ tip.category }}</span><h3>{{ tip.title }}</h3>
+				{% if tip.summary %}<p class="tip-summary">{{ tip.summary }}</p>{% endif %}
+				<div class="tip-body">{{ tip.content|linebreaks }}</div>
+			</div>
+		</article></div>
+		{% empty %}<div class="col-12"><p class="empty-state">As dicas da loja serão publicadas em breve.</p></div>{% endfor %}
+	</div>
+	<p class="tip-disclaimer">As dicas são gerais. Siga as instruções dos fabricantes e procure orientação profissional para necessidades específicas.</p>
+</div></section>
+{% endblock %}
